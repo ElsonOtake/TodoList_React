@@ -7,9 +7,11 @@ const InputTodo = props => {
   });
 
   const onChange = e => {
-    setInputText({
-      ...inputText,
-      [e.target.name]: e.target.value,
+    setInputText(prevState => {
+      return {
+        ...prevState,
+        [e.target.name]: e.target.value,
+      }
     })
   };
 

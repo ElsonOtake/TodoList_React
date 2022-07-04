@@ -1,4 +1,5 @@
-import React from "react"
+import React from "react";
+
 class TodoContainer extends React.Component {
   render() {
     return (
@@ -8,5 +9,6 @@ class TodoContainer extends React.Component {
       </div>
     )
   }
-}
-export default TodoContainer
+};
+
+export default TodoContainer;

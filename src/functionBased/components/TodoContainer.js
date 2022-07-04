@@ -5,7 +5,7 @@ import Header from './Header';
 import InputTodo from './InputTodo';
 
 const TodoContainer = () => {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(getInitialTodos());
 
   const handleChange = id => {
     setTodos(prevState => 
@@ -50,28 +50,11 @@ const TodoContainer = () => {
     });
   };
 
-  // const componentDidMount = () => {
-  //   // Way of picking data from jsonplaceholder
-  //   // 
-  //   // fetch("https://jsonplaceholder.typicode.com/todos?_limit=10")
-  //   //   .then(response => response.json())
-  //   //   .then(data => this.setTodos({ todos: data }));
-  //   // 
-  //   const temp = localStorage.getItem("todos")
-  //   const loadedTodos = JSON.parse(temp)
-  //   if (loadedTodos) {
-  //     setTodos({
-  //       todos: loadedTodos
-  //     })
-  //   }
-  // }
-
-  // const componentDidUpdate = (prevProps, prevState) => {
-  //   if(prevState.todos !== todos) {
-  //     const temp = JSON.stringify(todos)
-  //     localStorage.setItem("todos", temp)
-  //   }
-  // }
+  function getInitialTodos() {
+    const temp = localStorage.getItem("todos")
+    const savedTodos = JSON.parse(temp)
+    return savedTodos || []
+  }
 
   return (
     <div className="container">

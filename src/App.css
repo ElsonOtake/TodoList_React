@@ -12,10 +12,6 @@ body {
   height: 100vh;
 }
 
-li {
-  list-style: none;
-}
-
 .container {
   display: flex;
   flex-direction: column;

@@ -66,7 +66,7 @@ const TodoContainer = () => {
 
   return (
     <>
-      <Route path='/'>
+      <Route exact path='/'>
         <div className="container">
           <div className="inner">
             <Header />

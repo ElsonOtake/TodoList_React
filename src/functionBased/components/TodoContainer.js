@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import TodosList from './TodosList';
 import Header from './Header';
@@ -55,6 +55,11 @@ const TodoContainer = () => {
     const savedTodos = JSON.parse(temp)
     return savedTodos || []
   }
+
+  useEffect(() => {
+    const temp = JSON.stringify(todos)
+    localStorage.setItem("todos", temp)
+  }, [todos])
 
   return (
     <div className="container">

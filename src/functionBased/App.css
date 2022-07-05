@@ -12,6 +12,11 @@ body {
   height: 100vh;
 }
 
+.active-link {
+  color: orangered;
+  text-decoration: underline;
+}
+
 .container {
   display: flex;
   flex-direction: column;

@@ -17,7 +17,6 @@ const TodosList = (props) => (
 );
 
 TodosList.defaultProps = {
-  // id: '',
   todos: {},
   map: {},
   handleChangeProps: () => {},
@@ -26,7 +25,6 @@ TodosList.defaultProps = {
 };
 
 TodosList.propTypes = {
-  // id: PropTypes.string,
   todos: PropTypes.objectOf(PropTypes.todos),
   map: PropTypes.objectOf(PropTypes.todo),
   handleChangeProps: PropTypes.func,

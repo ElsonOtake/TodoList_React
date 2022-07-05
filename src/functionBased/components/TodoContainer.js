@@ -5,7 +5,11 @@ import Header from './Header';
 import InputTodo from './InputTodo';
 
 const TodoContainer = () => {
-  const [todos, setTodos] = useState(getInitialTodos());
+  const [todos, setTodos] = useState(() => {
+    const temp = localStorage.getItem('todos');
+    const savedTodos = JSON.parse(temp);
+    return savedTodos || [];
+  });
 
   const handleChange = (id) => {
     setTodos((prevState) => prevState.map((todo) => {
@@ -46,12 +50,6 @@ const TodoContainer = () => {
       todos: [...todos, newTodo],
     });
   };
-
-  function getInitialTodos() {
-    const temp = localStorage.getItem('todos');
-    const savedTodos = JSON.parse(temp);
-    return savedTodos || [];
-  }
 
   useEffect(() => {
     const temp = JSON.stringify(todos);

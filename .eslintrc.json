@@ -19,7 +19,8 @@
     "react/react-in-jsx-scope": "off",
     "import/no-unresolved": "off",
     "no-shadow": "off",
-    "react/destructuring-assignment": "off"
+    "react/destructuring-assignment": "off",
+    "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["todo"] }]
   },
   "ignorePatterns": [
     "dist/",

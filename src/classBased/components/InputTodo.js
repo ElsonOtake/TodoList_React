@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class InputTodo extends Component {
-  state = {
-    title: '',
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: '',
+    };
+  }
 
   onChange = (e) => {
     this.setState({
@@ -34,10 +38,18 @@ class InputTodo extends Component {
           name="title"
           onChange={this.onChange}
         />
-        <button className="input-submit">Submit</button>
+        <button type="button" className="input-submit">Submit</button>
       </form>
     );
   }
 }
+
+InputTodo.defaultProps = {
+  addTodoProps: () => {},
+};
+
+InputTodo.propTypes = {
+  addTodoProps: PropTypes.func,
+};
 
 export default InputTodo;

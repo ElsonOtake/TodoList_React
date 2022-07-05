@@ -5,8 +5,64 @@ import Header from './Header';
 import InputTodo from './InputTodo';
 
 class TodoContainer extends React.Component {
-  state = {
-    todos: [],
+  constructor(props) {
+    super(props);
+    this.state = {
+      todos: [],
+    };
+  }
+
+  componentDidMount() {
+    // Way of picking data from jsonplaceholder
+    //
+    // fetch("https://jsonplaceholder.typicode.com/todos?_limit=10")
+    //   .then(response => response.json())
+    //   .then(data => this.setState({ todos: data }));
+    //
+    const temp = localStorage.getItem('todos');
+    const loadedTodos = JSON.parse(temp);
+    if (loadedTodos) {
+      this.setState({
+        todos: loadedTodos,
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.todos !== this.state.todos) {
+      const temp = JSON.stringify(this.state.todos);
+      localStorage.setItem('todos', temp);
+    }
+  }
+
+  delTodo = (id) => {
+    this.setState({
+      todos: [
+        ...this.state.todos.filter((todo) => todo.id !== id),
+      ],
+    });
+  };
+
+  setUpdate = (updatedTitle, id) => {
+    this.setState({
+      todos: this.state.todos.map((todo) => {
+        if (todo.id === id) {
+          todo.title = updatedTitle;
+        }
+        return todo;
+      }),
+    });
+  }
+
+  addTodoItem = (title) => {
+    const newTodo = {
+      id: uuidv4(),
+      title,
+      completed: false,
+    };
+    this.setState({
+      todos: [...this.state.todos, newTodo],
+    });
   };
 
   handleChange = (id) => {
@@ -22,59 +78,6 @@ class TodoContainer extends React.Component {
       }),
     }));
   };
-
-  delTodo = (id) => {
-    this.setState({
-      todos: [
-        ...this.state.todos.filter((todo) => todo.id !== id),
-      ],
-    });
-  };
-
-  setUpdate = (updatedTitle, id) => {
-    this.setState({
-      todos: this.state.todos.map(todo => {
-        if (todo.id === id) {
-          todo.title = updatedTitle
-        }
-        return todo
-      }),
-    })
-  }
-
-  addTodoItem = (title) => {
-    const newTodo = {
-      id: uuidv4(),
-      title,
-      completed: false,
-    };
-    this.setState({
-      todos: [...this.state.todos, newTodo],
-    });
-  };
-
-  componentDidMount() {
-    // Way of picking data from jsonplaceholder
-    // 
-    // fetch("https://jsonplaceholder.typicode.com/todos?_limit=10")
-    //   .then(response => response.json())
-    //   .then(data => this.setState({ todos: data }));
-    // 
-    const temp = localStorage.getItem("todos")
-    const loadedTodos = JSON.parse(temp)
-    if (loadedTodos) {
-      this.setState({
-        todos: loadedTodos
-      })
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if(prevState.todos !== this.state.todos) {
-      const temp = JSON.stringify(this.state.todos)
-      localStorage.setItem("todos", temp)
-    }
-  }
 
   render() {
     return (

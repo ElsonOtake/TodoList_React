@@ -7,30 +7,27 @@ import InputTodo from './InputTodo';
 const TodoContainer = () => {
   const [todos, setTodos] = useState(getInitialTodos());
 
-  const handleChange = id => {
-    setTodos(prevState => 
-      prevState.map(todo => {
-        if (todo.id === id) {
-          return {
-            ...todo,
-            completed: !todo.completed,
-          };
-        }
-        return todo;
-      }),
-    );
+  const handleChange = (id) => {
+    setTodos((prevState) => prevState.map((todo) => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          completed: !todo.completed,
+        };
+      }
+      return todo;
+    }));
   };
 
-  const delTodo = id => {
+  const delTodo = (id) => {
     setTodos([
-        ...todos.filter(todo => todo.id !== id),
-      ]
-    );
+      ...todos.filter((todo) => todo.id !== id),
+    ]);
   };
 
   const setUpdate = (updatedTitle, id) => {
     setTodos(
-      todos.map(todo => {
+      todos.map((todo) => {
         if (todo.id === id) {
           todo.title = updatedTitle;
         }
@@ -39,10 +36,10 @@ const TodoContainer = () => {
     );
   };
 
-  const addTodoItem = title => {
+  const addTodoItem = (title) => {
     const newTodo = {
       id: uuidv4(),
-      title: title,
+      title,
       completed: false,
     };
     setTodos({
@@ -51,15 +48,15 @@ const TodoContainer = () => {
   };
 
   function getInitialTodos() {
-    const temp = localStorage.getItem("todos")
-    const savedTodos = JSON.parse(temp)
-    return savedTodos || []
+    const temp = localStorage.getItem('todos');
+    const savedTodos = JSON.parse(temp);
+    return savedTodos || [];
   }
 
   useEffect(() => {
-    const temp = JSON.stringify(todos)
-    localStorage.setItem("todos", temp)
-  }, [todos])
+    const temp = JSON.stringify(todos);
+    localStorage.setItem('todos', temp);
+  }, [todos]);
 
   return (
     <div className="container">
@@ -75,6 +72,6 @@ const TodoContainer = () => {
       </div>
     </div>
   );
-}
+};
 
 export default TodoContainer;

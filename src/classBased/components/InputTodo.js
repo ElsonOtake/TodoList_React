@@ -6,6 +6,7 @@ class InputTodo extends Component {
     super(props);
     this.state = {
       title: '',
+      alertMessage: '',
     };
   }
 
@@ -18,28 +19,38 @@ class InputTodo extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     if (this.state.title.trim()) {
-      this.props.addTodoProps(this.state.title);
+      this.props.addTodoProps(this.state.title.trim());
       this.setState({
         title: '',
       });
     } else {
-      alert('Please write item');
+      this.setState({
+        alertMessage: 'Please write item',
+      });
+      setTimeout(() => {
+        this.setState({
+          alertMessage: '',
+        });
+      }, 3000);
     }
   };
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className="form-container">
-        <input
-          type="text"
-          className="input-text"
-          placeholder="Add Todo..."
-          value={this.state.title}
-          name="title"
-          onChange={this.onChange}
-        />
-        <button type="submit" className="input-submit">Submit</button>
-      </form>
+      <>
+        <p className="input-alert">{this.state.alertMessage}</p>
+        <form onSubmit={this.handleSubmit} className="form-container">
+          <input
+            type="text"
+            className="input-text"
+            placeholder="Add Todo..."
+            value={this.state.title}
+            name="title"
+            onChange={this.onChange}
+          />
+          <button type="submit" className="input-submit">Submit</button>
+        </form>
+      </>
     );
   }
 }

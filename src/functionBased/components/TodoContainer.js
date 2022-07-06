@@ -47,9 +47,7 @@ const TodoContainer = () => {
       title,
       completed: false,
     };
-    setTodos({
-      todos: [...todos, newTodo],
-    });
+    setTodos([...todos, newTodo]);
   };
 
   useEffect(() => {

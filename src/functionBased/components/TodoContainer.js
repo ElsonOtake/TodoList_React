@@ -42,6 +42,7 @@ const TodoContainer = () => {
 
   const addTodoItem = (title) => {
     const newTodo = {
+      userId: 1,
       id: uuidv4(),
       title,
       completed: false,

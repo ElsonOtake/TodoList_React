@@ -69,6 +69,11 @@ body {
   border: none;
 }
 
+.input-alert {
+  color: red;
+  margin: 1rem 2rem;
+}
+
 /* sidebar Nav */
 
 .navBar {

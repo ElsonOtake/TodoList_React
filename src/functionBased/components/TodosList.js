@@ -17,16 +17,16 @@ const TodosList = (props) => (
 );
 
 TodosList.defaultProps = {
-  todos: {},
-  map: {},
+  todos: [{}],
+  // map: [{}],
   handleChangeProps: () => {},
   deleteTodoProps: () => {},
   setUpdate: () => {},
 };
 
 TodosList.propTypes = {
-  todos: PropTypes.objectOf(PropTypes.todos),
-  map: PropTypes.objectOf(PropTypes.todo),
+  todos: PropTypes.arrayOf(PropTypes.objectOf),
+  // map: PropTypes.arrayOf(PropTypes.objectOf),
   handleChangeProps: PropTypes.func,
   deleteTodoProps: PropTypes.func,
   setUpdate: PropTypes.func,

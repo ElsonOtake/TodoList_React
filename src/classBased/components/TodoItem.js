@@ -84,7 +84,7 @@ TodoItem.propTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
   completed: PropTypes.bool,
-  todo: PropTypes.objectOf(PropTypes.todo),
+  todo: PropTypes.objectOf(PropTypes.objectOf),
   handleChangeProps: PropTypes.func,
   deleteTodoProps: PropTypes.func,
   setUpdate: PropTypes.func,

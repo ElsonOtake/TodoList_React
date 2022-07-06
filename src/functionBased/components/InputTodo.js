@@ -7,6 +7,8 @@ const InputTodo = (props) => {
     title: '',
   });
 
+  const [alertMessage, setAlertMessage] = useState('');
+
   const onChange = (e) => {
     setInputText({
       ...inputText,
@@ -17,31 +19,38 @@ const InputTodo = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (inputText.title.trim()) {
-      props.addTodoProps(inputText.title);
+      props.addTodoProps(inputText.title.trim());
       setInputText({
         title: '',
       });
     } else {
-      alert('Please write item');
+      setAlertMessage('Please write item');
+      setTimeout(() => {
+        setAlertMessage('');
+      }, 3000);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="form-container">
-      <input
-        type="text"
-        className="input-text"
-        placeholder="Add todo..."
-        value={inputText.title}
-        name="title"
-        onChange={onChange}
-      />
-      <button type="button" className="input-submit">
-        <FaPlusCircle
-          style={{ color: 'darkcyan', fontSize: '20px', marginTop: '2px' }}
+    <>
+      <p className="input-alert">{alertMessage}</p>
+      <form onSubmit={handleSubmit} className="form-container">
+        <input
+          type="text"
+          className="input-text"
+          placeholder="Add todo..."
+          value={inputText.title}
+          name="title"
+          onChange={onChange}
         />
-      </button>
-    </form>
+        <button type="submit" className="input-submit">
+          <FaPlusCircle
+            style={{ color: 'darkcyan', fontSize: '20px', marginTop: '2px' }}
+          />
+        </button>
+      </form>
+    </>
+
   );
 };
 
